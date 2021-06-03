@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-function sendEmail(username, password, host, port, subject, address, sharedId) {
+async function sendEmail(username, password, host, port, subject, address, sharedId) {
 	let transporter = nodemailer.createTransport({
 		host,
 		port,
@@ -11,7 +11,7 @@ function sendEmail(username, password, host, port, subject, address, sharedId) {
 		},
 	});
 
-	return await transporter.sendMail({
+	return transporter.sendMail({
 		from: '"Legendist Bot" <legends@datacore.app>',
 		to: address,
 		subject: "RE: " + subject,
