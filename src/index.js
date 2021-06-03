@@ -54,6 +54,8 @@ startListening(
 						mail.subject,
 						mail.from.address,
 						cloudSaveId);
+
+					console.log(`Email sent`, mail.subject, mail.from, cloudSaveId);
 				});
 			}
 		}
