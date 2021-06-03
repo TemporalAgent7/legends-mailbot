@@ -16,7 +16,10 @@ startListening(
 		if (mail.text.indexOf("Do not modify anything below here") >= 0) {
 			// Worth trying to process
 			let data = mail.text.substr(mail.text.indexOf("data:") + 6);
-			data = data.substr(0, data.indexOf('\n'));
+
+			if (data.indexOf('\n') > 0) {
+				data = data.substr(0, data.indexOf('\n'));
+			}
 
 			let playerData = attemptDecode(data);
 
