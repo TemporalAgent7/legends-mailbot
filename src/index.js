@@ -2,10 +2,16 @@ const { startListening } = require("./listener");
 const { attemptDecode } = require("./parser");
 const { sendEmail } = require("./sender");
 
+const crypto = require('crypto');
 const fetch = require('node-fetch');
 const { v4: uuidv4 } = require('uuid');
 
 require("dotenv").config();
+
+function generateHash(address) {
+	//return uuidv4();
+	return crypto.createHash('md5').update(address).digest('hex');
+}
 
 startListening(
 	process.env.EMAIL_USERNAME,
@@ -29,7 +35,7 @@ startListening(
 					captainName = "Captain";
 				}
 
-				let cloudSaveId = uuidv4();
+				let cloudSaveId = generateHash(mail.from.address);
 
 				// Clean up the data for sharing
 				let dataToShare = {
