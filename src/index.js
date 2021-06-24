@@ -48,6 +48,11 @@ startListening(
 					cloudSaveId
 				};
 
+				if (mail.text.indexOf("full") >= 0) {
+					// Include the items as well
+					dataToShare.items = playerData.items;
+				}
+
 				fetch(`https://apilegends.datacore.app/post_profile`, {
 					method: 'post',
 					headers: {
